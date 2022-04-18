@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "BookApp.Core": {
+      "commandName": "Project"
+    }
+  }
+}
