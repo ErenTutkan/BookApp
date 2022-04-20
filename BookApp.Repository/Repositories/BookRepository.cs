@@ -45,6 +45,13 @@ namespace BookApp.Repository.Repositories
             return result.ToList();
         }
 
+        public async Task<List<Book>> GetByCategory(int categoryId)
+        {
+            var query = "func_getbookby_category";
+            var result=await _connection.QueryAsync<Book>(query,new {c_id=categoryId},commandType:CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
         public async Task<Book> GetById(int id)
         {
             var command = "func_getbyid_books";

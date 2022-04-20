@@ -17,5 +17,6 @@ namespace BookApp.Repository.Repositories
         Task<Book> GetById(int id);
         Task<List<BookFullDto>> GetFullBook();
         Task<BookFullDto> GetByIdFullBook(int id);
+        Task<List<Book>> GetByCategory(int categoryId);
     }
 }

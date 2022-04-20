@@ -4,6 +4,7 @@ using BookApp.Service.Command.Book.Insert;
 using BookApp.Service.Command.Book.Update;
 using BookApp.Service.Queries.Book.GetAll;
 using BookApp.Service.Queries.Book.GetAllFull;
+using BookApp.Service.Queries.Book.GetByCategory;
 using BookApp.Service.Queries.Book.GetById;
 using BookApp.Service.Queries.Book.GetFull;
 using MediatR;
@@ -47,6 +48,11 @@ namespace BookApp.API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             return CreateActionResult(await _mediator.Send(new BookDeleteCommand() { Id = id }));   
+        }
+        [HttpGet("GetByCategory/{categoryId:int}")]
+        public async Task<IActionResult> GetByCategory(int categoryId)
+        {
+            return CreateActionResult(await _mediator.Send(new GetByCategoryWithBookQuery(){ CategoryId=categoryId}));
         }
     }
 }
