@@ -12,5 +12,6 @@ namespace BookApp.Core.DTOs.BookDtos
         public string? Description { get; set; }
         public string? Author { get; set; }
         public string BookPicture { get; set; }
+        public List<int> Categories { get; set; }
     }
 }

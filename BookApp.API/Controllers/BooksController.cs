@@ -3,7 +3,9 @@ using BookApp.Service.Command.Book.Delete;
 using BookApp.Service.Command.Book.Insert;
 using BookApp.Service.Command.Book.Update;
 using BookApp.Service.Queries.Book.GetAll;
+using BookApp.Service.Queries.Book.GetAllFull;
 using BookApp.Service.Queries.Book.GetById;
+using BookApp.Service.Queries.Book.GetFull;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,12 +26,12 @@ namespace BookApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return  CreateActionResult(await _mediator.Send(new GelAllBookQuery()));
+            return  CreateActionResult(await _mediator.Send(new GetAllFullBookQuery()));
         }
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
-            return CreateActionResult(await _mediator.Send(new GetByIdBookQuery() { Id = id }));
+            return CreateActionResult(await _mediator.Send(new GetByIdFullBookQuery() { Id = id }));
         }
         [HttpPost]
         public async Task<IActionResult> Save(BookAddRequestDto request)
