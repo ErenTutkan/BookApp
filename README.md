@@ -4,3 +4,9 @@ Kullanılan Framework ve Kütüphaneler .Net Core, MediatR,AutoMapper,Dapper </b
 Sql Olarak ise PostgreSql Kullanılmıştır.</br>
 1. Kitapların temel CRUD operasyonları yapılmış CQRS ile servis katmanı geliştirildi.
 2. Kategorilerin temel CRUD operasyonları yapılmış CQRS ile servis katmanı geliştirildi.
+
+<br>
+-------------------------------------------------------------------------
+Kitaplar Yanlarında birden fazla kategorisi ile geliyor 
+Kategori ekleme işi transaction bütünlüğünü sağlamak için BookInsertCommandHandlerda yapıldı her hangi bir hatada tüm işlemler rollback atıp veritabanında düzensizlik sağlanması önlendi.
+Kategori silme işlemi eklendi.
