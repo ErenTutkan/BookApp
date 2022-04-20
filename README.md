@@ -6,7 +6,7 @@ Sql Olarak ise PostgreSql Kullanılmıştır.</br>
 2. Kategorilerin temel CRUD operasyonları yapılmış CQRS ile servis katmanı geliştirildi.
 
 <br>
--------------------------------------------------------------------------
-Kitaplar Yanlarında birden fazla kategorisi ile geliyor 
-Kategori ekleme işi transaction bütünlüğünü sağlamak için BookInsertCommandHandlerda yapıldı her hangi bir hatada tüm işlemler rollback atıp veritabanında düzensizlik sağlanması önlendi.
-Kategori silme işlemi eklendi.
+-------------------------------------------------------------------------<br>
+Kitaplar Yanlarında birden fazla kategorisi ile geliyor <br>
+Kategori ekleme işi transaction bütünlüğünü sağlamak için BookInsertCommandHandlerda yapıldı her hangi bir hatada tüm işlemler rollback atıp veritabanında düzensizlik sağlanması önlendi.<br>
+Kategori silme işlemi eklendi.<br>
