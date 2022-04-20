@@ -10,3 +10,5 @@ Sql Olarak ise PostgreSql Kullanılmıştır.</br>
 Kitaplar Yanlarında birden fazla kategorisi ile geliyor <br>
 Kategori ekleme işi transaction bütünlüğünü sağlamak için BookInsertCommandHandlerda yapıldı her hangi bir hatada tüm işlemler rollback atıp veritabanında düzensizlik sağlanması önlendi.<br>
 Kategori silme işlemi eklendi.<br>
+----------------------------------------------------------<br>
+Kitapları kategorilere göre listeleme eklendi.<br>
