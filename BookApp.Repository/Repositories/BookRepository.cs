@@ -1,4 +1,5 @@
-﻿using BookApp.Core.DTOs.BookDtos;
+﻿using BookApp.Core.DTOs.BookCategoryDtos;
+using BookApp.Core.DTOs.BookDtos;
 using BookApp.Core.Models;
 using Dapper;
 using System;
@@ -49,6 +50,106 @@ namespace BookApp.Repository.Repositories
             var command = "func_getbyid_books";
             var result = await _connection.QuerySingleAsync<Book>(command,new { b_id = id }, commandType: CommandType.StoredProcedure);
             return result;
+        }
+
+        public async Task<BookFullDto> GetByIdFullBook(int id)
+        {
+            var query = $"select * from func_getbyid_fullbook({id})";
+            var result = await _connection.QueryAsync<BookFullDto, BookCategoryDto, BookFullDto>(query, (book, categories) =>
+            {
+
+                BookFullDto bookFullDto = null;
+                if (bookFullDto == null)
+                {
+                    bookFullDto = new BookFullDto();
+                    bookFullDto.Id = book.Id;
+                    bookFullDto.BookName = book.BookName;
+                    bookFullDto.Author = book.Author;
+                    bookFullDto.Description = book.Description;
+                    bookFullDto.BookPicture = book.BookPicture;
+                }
+
+
+                if (categories != null)
+                {
+                    if (!bookFullDto.Categories.Any(x => x.BcId == categories.BcId))
+                    {
+                        bookFullDto.Categories.Add(categories);
+                    }
+                }
+
+                return bookFullDto;
+
+            }, splitOn: "bcid");
+
+            List<BookFullDto> bookFullDto = new List<BookFullDto>();
+            foreach (var item in result)
+            {
+                if (!bookFullDto.Any(x => x.Id == item.Id))
+                {
+                    bookFullDto.Add(item);
+                }
+                else
+                {
+                    var book = bookFullDto.First(x => x.Id == item.Id);
+
+                    if (!book.Categories.Any(x => x.BcId == item.Categories.First().BcId))
+                    {
+                        book.Categories.Add(item.Categories.First());
+                    }
+                }
+            }
+            return bookFullDto.First();
+        }
+
+        public async Task<List<BookFullDto>> GetFullBook()
+        {
+            var query = "select * from get_full_book";
+            var result = await _connection.QueryAsync<BookFullDto, BookCategoryDto, BookFullDto>(query, (book, categories) =>
+            {
+
+                BookFullDto bookFullDto=null;
+                if(bookFullDto == null)
+                {
+                    bookFullDto = new BookFullDto();
+                    bookFullDto.Id = book.Id;
+                    bookFullDto.BookName = book.BookName;
+                    bookFullDto.Author = book.Author;
+                    bookFullDto.Description = book.Description;
+                    bookFullDto.BookPicture = book.BookPicture;
+                }
+               
+
+                if (categories != null)
+                {
+                    if (!bookFullDto.Categories.Any(x => x.BcId == categories.BcId))
+                    {
+                        bookFullDto.Categories.Add(categories);
+                    }
+                }
+                
+                return bookFullDto;
+                
+            },splitOn:"bcid");
+
+            List<BookFullDto> bookFullDto = new List<BookFullDto>();
+            foreach (var item in result)
+            {
+                if (!bookFullDto.Any(x => x.Id == item.Id))
+                {
+                    bookFullDto.Add(item);
+                }
+                else
+                {
+                    var book=bookFullDto.First(x=>x.Id==item.Id);
+
+                    if (!book.Categories.Any(x=>x.BcId==item.Categories.First().BcId))
+                    {
+                        book.Categories.Add(item.Categories.First());
+                    }
+                }
+            }
+            return bookFullDto.ToList();
         }
 
         public async Task<bool> Update(BookUpdateRequestDto request)

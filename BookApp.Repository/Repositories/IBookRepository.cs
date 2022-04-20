@@ -15,5 +15,7 @@ namespace BookApp.Repository.Repositories
         Task<bool> Delete(int id);
         Task<List<Book>> GetAll();
         Task<Book> GetById(int id);
+        Task<List<BookFullDto>> GetFullBook();
+        Task<BookFullDto> GetByIdFullBook(int id);
     }
 }
