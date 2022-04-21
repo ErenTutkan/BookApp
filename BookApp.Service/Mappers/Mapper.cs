@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BookApp.Core.DTOs.BookDtos;
 using BookApp.Core.DTOs.CategoryDtos;
+using BookApp.Core.DTOs.ChapterDtos;
 using BookApp.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace BookApp.Service.Mappers
         {
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Book, BookDto>().ReverseMap();
+            CreateMap<Chapter, ChapterDto>().ReverseMap();
 
         }
     }

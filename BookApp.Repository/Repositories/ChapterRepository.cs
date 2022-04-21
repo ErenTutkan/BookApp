@@ -27,9 +27,11 @@ namespace BookApp.Repository.Repositories
             return result;
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            var command = $"call sp_delete_chapter({id})";
+            var result = await _connection.ExecuteAsync(command);
+            return result == -1;
         }
 
         public async Task<List<Chapter>> GetAll()
@@ -53,9 +55,10 @@ namespace BookApp.Repository.Repositories
             return result;
         }
 
-        public Task<bool> Update(ChapterUpdateRequestDto updateChapter)
+        public async Task<bool> Update(ChapterUpdateRequestDto updateChapter)
         {
-            throw new NotImplementedException();
+            var command = $"call sp_update_chapter({updateChapter.Id},{updateChapter.ChapterName},{updateChapter.Episode})";
+            return await _connection.ExecuteAsync(command)==-1;
         }
     }
 }

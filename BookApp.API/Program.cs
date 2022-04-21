@@ -30,6 +30,8 @@ builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
 builder.Services.AddScoped<IBookRepository,BookRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IBookCategoryRepository,BookCategoryRepository>();
+builder.Services.AddScoped<IChapterRepository,ChapterRepository>();
+
 builder.Services.AddScoped<IDbConnection>(sp =>new NpgsqlConnection(builder.Configuration.GetConnectionString("PostgreSql")));
 builder.Services.AddScoped<IDbTransaction>(sp =>
 {

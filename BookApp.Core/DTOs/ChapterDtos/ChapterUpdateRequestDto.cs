@@ -11,6 +11,6 @@ namespace BookApp.Core.DTOs.ChapterDtos
         public int Id { get; set; }
         public string ChapterName { get; set; }
         public string Episode { get; set; }
-        public int BookId { get; set; }
+        
     }
 }
