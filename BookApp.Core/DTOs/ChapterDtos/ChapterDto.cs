@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookApp.Core.Models
+namespace BookApp.Core.DTOs.ChapterDtos
 {
-    public class Chapter
+    public class ChapterDto
     {
         public int Id { get; set; }
         public string ChapterName { get; set; }
